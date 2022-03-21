@@ -20,9 +20,20 @@ namespace data_structures_and_algorithms
 
             Console.WriteLine("input the number to insert and shift to your array");
             int b = Convert.ToInt32(Console.ReadLine());
-            insertShiftArray(arr, b);
 
-          
+
+            Console.WriteLine("Now we need to fill your array");
+            int[] array = new int[b];
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine($"Please enter the index {i + 1} of your array");
+                array[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            reverseArray(array);
+            Console.WriteLine();
+            int[] arr = {3,4 ,7, 5};
+            insertShiftArray(arr, 9);
+
         }
         static int[] insertShiftArray(int[] arr, int Numv)
         {
@@ -46,15 +57,9 @@ namespace data_structures_and_algorithms
 
 
 
-        public static int reverseArray(int a)
+        public static int reverseArray(int[] array)
         {
-            Console.WriteLine("Now we need to fill your array");
-            int[] array = new int[a];
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.WriteLine($"Please enter the index {i + 1} of your array");
-                array[i] = Convert.ToInt32(Console.ReadLine());
-            }
+           
             Console.WriteLine("Your Array: ");
             for (int i = 0; i < array.Length; i++)
             {
@@ -66,7 +71,7 @@ namespace data_structures_and_algorithms
             {
                 Console.Write(array[i] + "  ");
             }
-            return a;
+            return array[0];
         }
         
     }
