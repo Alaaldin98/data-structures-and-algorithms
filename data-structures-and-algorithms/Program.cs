@@ -33,9 +33,14 @@ namespace data_structures_and_algorithms
 
                  insertShiftArray(arr, b); */
 
-            int[] array = { 33, 67, 15, 6, 8, 65};
-            int key = 6;
-            BinarySearch(array, key);
+            int[] array = { 4, 10, 15, 26, 38, 65};
+            int key = 26;
+          if(  BinarySearch(array,0,array.Length, key) != -1)
+            {
+                Console.WriteLine(BinarySearch(array, 0, array.Length, key));
+            }
+          else 
+                Console.WriteLine(-1);
 
         }
         static int[] insertShiftArray(int[] arr, int Numv)
@@ -76,9 +81,25 @@ namespace data_structures_and_algorithms
             }
             return array[0];
         }
-         static void BinarySearch(int[] arr, int key)
+         static int BinarySearch(int[] arr,int left,int right, int key)
         {
-            int[] PassedArray = arr;
+            int middle = (left + right) / 2;
+
+            if (left <= right)
+            {
+                if (arr[middle] == key)
+                {
+                    return  middle;
+                }
+                if (arr[middle] > key)
+                {
+                    return BinarySearch(arr , left , middle-1 , key);
+                }
+                else
+                    return BinarySearch(arr, middle + 1,right, key);
+            }
+            return middle;
+         /*   int[] PassedArray = arr;
             int Value = key;
 
             int myIndex = 0 ;
@@ -94,7 +115,7 @@ namespace data_structures_and_algorithms
                     myIndex = -1;
                 }
             }
-            Console.WriteLine(myIndex);
+            Console.WriteLine(myIndex); */
            
         }
     }
