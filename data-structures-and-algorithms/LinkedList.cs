@@ -6,58 +6,43 @@ using System.Threading.Tasks;
 
 namespace data_structures_and_algorithms
 {
-     class LinkedList
+    public class LinkedList
     {
-        Node Head;
-        Node Last;
-        public LinkedList()
+        public Node head;
+
+        public void Insert(object value)
         {
-            Head = Last = null;
-           
+            Node data = new Node(value);
+            data.next = head;
+            head = data;
         }
-        public void AddEnd(int value)
+
+        public bool Include(object value)
         {
-            Node item = new Node(value);
-            if(Head == null)
+            Node current = head;
+            while (current != null)
             {
-                Head = item;
-                Last = item;
-            }
-            else
-            {
-                Last.Next = item;
-                Last = item;
-            }            
-        }
-        public void AddFirst(int value)
-        {
-            Node item = new Node(value);
-            if (Head == null)
-            {
-                Head = item;
-                Last = item;
-            }
-            else
-            {
-               item.Next = Head;
-                Head = item;
-            }
-        }
-        public void Display()
-        {
-            Node Start = Head;
-            if (Start == null)
-            {
-                Console.WriteLine("List empty");
-            }
-            else
-            {
-                while (Start != null)
+                if (value.Equals(current.value))
                 {
-                    Console.WriteLine(Start.Data);
-                    Start = Start.Next;
+                    return true;
                 }
+                current = current.next;
             }
+            return false;
+        }
+
+        public string Tostring()
+        {
+            string stri = "";
+            Node current = head;
+            while (current != null)
+            {
+                stri += $"[ {current.value} ] -> ";
+                current = current.next;
+            }
+
+            stri += "NULL";
+            return stri;
         }
     }
 }

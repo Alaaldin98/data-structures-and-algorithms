@@ -6,13 +6,6 @@ namespace data_structures_and_algorithms
     {
         static void Main(string[] args)
         {
-            LinkedList l = new LinkedList();
-           
-            l.AddFirst(1);
-            l.AddFirst(2);
-            l.AddEnd(5);
-            l.AddEnd(6);
-            l.Display();
 
             Console.WriteLine("Hello World!");
             /*     Console.WriteLine("input the length of your array");
