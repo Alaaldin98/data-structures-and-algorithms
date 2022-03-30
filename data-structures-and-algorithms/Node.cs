@@ -6,24 +6,15 @@ using System.Threading.Tasks;
 
 namespace data_structures_and_algorithms
 {
-    internal class Node
+    public class Node
     {
-        int data;
-        Node next;
-        public int Data
+        public object value;
+        public Node next;
+
+        public Node(object value)
         {
-            get { return data; }
-            set { data = value; }
-        }
-        public Node Next
-        {
-            get { return next; }
-            set { next = value; }
-        }
-        public Node(int value)
-        {
-            this.data = value;
-            next = null;
+            this.value = value;
+            this.next = null;
         }
     }
 }
