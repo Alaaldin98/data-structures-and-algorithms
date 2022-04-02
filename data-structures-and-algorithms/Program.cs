@@ -55,9 +55,6 @@ namespace data_structures_and_algorithms
     {
         static void Main(string[] args)
         {
-            
-
-
             Console.WriteLine("Hello World!");
             /*     Console.WriteLine("input the length of your array");
                 int a = Convert.ToInt32(Console.ReadLine());
