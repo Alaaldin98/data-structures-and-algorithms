@@ -70,7 +70,7 @@ namespace TestLinkedList
             Assert.Equal("[ 27 ] -> [ 8 ] -> [ 20 ] -> NULL", linked.Tostring());
         }
         [Fact]
-        public void Test8()
+        public void LLKth()
         {
             LinkedList list = new LinkedList();
             list.Insert(3);
