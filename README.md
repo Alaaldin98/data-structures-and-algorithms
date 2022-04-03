@@ -31,4 +31,4 @@
 | Topics  | Link |
 | -------- | --------- |
 | LinkedList  | [SLinkedList](LinkedList.md)  |
-|     |     |
+|  LinkedListkth   |   [LinkedListKTH](kth.md)   |
