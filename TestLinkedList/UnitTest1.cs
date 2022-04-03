@@ -69,6 +69,15 @@ namespace TestLinkedList
             linked.Insert(27);
             Assert.Equal("[ 27 ] -> [ 8 ] -> [ 20 ] -> NULL", linked.Tostring());
         }
-
+        [Fact]
+        public void Test8()
+        {
+            LinkedList list = new LinkedList();
+            list.Insert(3);
+            list.Insert(8);
+            list.Insert(2);
+            Assert.Equal(3, list.kthFromEnd(1));
+            Assert.Equal(-1, list.kthFromEnd(-4));
+        }
     }
 }
