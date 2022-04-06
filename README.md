@@ -32,3 +32,4 @@
 | -------- | --------- |
 | LinkedList  | [SLinkedList](LinkedList.md)  |
 |  LinkedListkth   |   [LinkedListKTH](kth.md)   |
+|  LinkedListkth   |   [LinkedListKTH](kth.md)   |
