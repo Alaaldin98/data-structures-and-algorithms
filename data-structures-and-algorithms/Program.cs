@@ -111,64 +111,64 @@ Console.WriteLine(e.Message);
         }
         internal class Program
         {
-            static void Main(string[] args)
-            {
-                try
-                {
-                    Console.WriteLine("Hello World!");
+            /*   static void Main(string[] args)
+               {
+                   try
+                   {
+                       Console.WriteLine("Hello World!");
 
-                    LinkedList llist = new LinkedList();
+                       LinkedList llist = new LinkedList();
 
-                    llist.Insert(20);
-                    llist.Insert(4);
-                    llist.Insert(15);
-                    llist.Insert(35);
-                    llist.kthFromEnd(1);
-                   
-
-                    /*     Console.WriteLine("input the length of your array");
-                        int a = Convert.ToInt32(Console.ReadLine());
-                         int[] arr =new int[a] ;
-                         Console.WriteLine("input the the number to fill your array");
-
-                         for (int i = 0; i < arr.Length; i++)
-                         {
-                             arr[i] = Convert.ToInt32(Console.ReadLine());
-                         }
-
-                         Console.WriteLine("input the number to insert and shift to your array");
-                         int b = Convert.ToInt32(Console.ReadLine());
+                       llist.Insert(20);
+                       llist.Insert(4);
+                       llist.Insert(15);
+                       llist.Insert(35);
+                       llist.kthFromEnd(1);
 
 
-                         Console.WriteLine("Now we need to fill your array");
-                         int[] array = new int[b];
-                         for (int i = 0; i < array.Length; i++)
-                         {
-                             Console.WriteLine($"Please enter the index {i + 1} of your array");
-                             array[i] = Convert.ToInt32(Console.ReadLine());
-                         }
-                         reverseArray(array);
+                            Console.WriteLine("input the length of your array");
+                           int a = Convert.ToInt32(Console.ReadLine());
+                            int[] arr =new int[a] ;
+                            Console.WriteLine("input the the number to fill your array");
 
-                         insertShiftArray(arr, b); */
+                            for (int i = 0; i < arr.Length; i++)
+                            {
+                                arr[i] = Convert.ToInt32(Console.ReadLine());
+                            }
 
-                    int[] array = { 4, 10, 15, 26, 38, 65 };
-                    int key = 26;
-                    if (BinarySearch(array, 0, array.Length, key) != -1)
-                    {
-                        Console.WriteLine(BinarySearch(array, 0, array.Length, key));
-                    }
-                    else
-                        Console.WriteLine(-1);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
+                            Console.WriteLine("input the number to insert and shift to your array");
+                            int b = Convert.ToInt32(Console.ReadLine());
 
 
-                }
+                            Console.WriteLine("Now we need to fill your array");
+                            int[] array = new int[b];
+                            for (int i = 0; i < array.Length; i++)
+                            {
+                                Console.WriteLine($"Please enter the index {i + 1} of your array");
+                                array[i] = Convert.ToInt32(Console.ReadLine());
+                            }
+                            reverseArray(array);
+
+                            insertShiftArray(arr, b); 
+
+                       int[] array = { 4, 10, 15, 26, 38, 65 };
+                       int key = 26;
+                       if (BinarySearch(array, 0, array.Length, key) != -1)
+                       {
+                           Console.WriteLine(BinarySearch(array, 0, array.Length, key));
+                       }
+                       else
+                           Console.WriteLine(-1);
+                   }
+                   catch (Exception e)
+                   {
+                       Console.WriteLine(e.Message);
 
 
-            }
+                   }
+
+
+               }*/
             static int[] insertShiftArray(int[] arr, int Numv)
             {
 
