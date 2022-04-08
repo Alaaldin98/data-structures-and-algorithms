@@ -9,31 +9,7 @@ namespace data_structures_and_algorithms
 
     internal class Class2
     {
-        static void Main()
-        {
-            LinkedList l1 = new LinkedList();
-            l1.Add(new Node("1"));  
-            l1.Add(new Node("2"));
-            l1.Add(new Node("3"));
-            l1.Add(new Node("4"));
-            l1.Add(new Node("5"));
-            l1.Add(new Node("8"));
-            l1.Add(new Node("100"));
-            l1.Add(new Node("120"));
 
-
-            LinkedList l2 = new LinkedList();
-            l2.Add(new Node("10"));
-            l2.Add(new Node("30"));
-            l2.Add(new Node("34"));
-            LinkedList list = new LinkedList();
-            list.MergeSortedList(l1.Head, l2.Head);
-            Console.WriteLine(list.MergeSortedList(l1.Head, l2.Head));
-           // list.PrintNodes();
-            Console.ReadLine();
-        }
-
-        
         public class Node
         {
             public object data;
