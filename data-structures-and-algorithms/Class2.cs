@@ -9,6 +9,7 @@ namespace data_structures_and_algorithms
 
     internal class Class2
     {
+
         public class Node
         {
             public object data;
