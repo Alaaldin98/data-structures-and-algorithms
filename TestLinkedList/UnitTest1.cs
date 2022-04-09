@@ -35,7 +35,7 @@ namespace TestLinkedList
         {
             LinkedList linked = new LinkedList(8);
             linked.Insert(5);
-        
+
             linked.Insert(10);
             Assert.True(linked.Include(10));
         }
@@ -69,7 +69,7 @@ namespace TestLinkedList
             linked.Insert(27);
             Assert.Equal("[ 27 ] -> [ 8 ] -> [ 20 ] -> NULL", linked.Tostring());
         }
-  
+
     }
     public class UnitTest2
     {
@@ -140,22 +140,8 @@ namespace TestLinkedList
             list.Insert(3);
             list.Insert(8);
             list.Insert(2);
-           Assert.Equal(3, list.kthFromEnd(8));
+            Assert.Equal(3, list.kthFromEnd(8));
             Assert.Equal(-1, list.kthFromEnd(-4));
         }
-      
-
-        // Test if k is not at the end, but somewhere in the middle of the linked list
-        [Fact]
-        public void Test5()
-        {
-            LinkedList list = new LinkedList(1);
-            list.Insert(3);
-            list.Insert(8);
-            list.Insert(2);
-            Assert.Equal(3, list.kthFromEnd(2));
-
-        }
-
     }
 }
