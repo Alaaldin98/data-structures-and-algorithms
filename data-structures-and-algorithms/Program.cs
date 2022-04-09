@@ -6,7 +6,11 @@ namespace data_structures_and_algorithms
     public class LinkedList
 
     {
-        public Node head;
+        public Node head { get; set; }
+        public LinkedList(int value)
+        {
+            head = new Node(value);
+        }
 
 
 
@@ -44,27 +48,61 @@ namespace data_structures_and_algorithms
             stri += "NULL";
             return stri;
         }
-        public void Append(int nvalue)
+        public void Append(int newValue)
         {
-            Node newNode = new Node(nvalue);
-            newNode.value = nvalue;
-            newNode.next = null;
-            if (head == null)
+            Node current = head;
+            Node temp = new Node(newValue);
+
+            while (current.next != null)
             {
-                head = newNode;
+                current = current.next;
             }
-            else
+            current.next = temp;
+        }
+
+        // Function to adds a new node with the given new value immediately before the first node that has the value specified
+
+        public void InsertBefore(int beforValue, int newValue)
+        {
+            Node current = head;
+            Node temp = new Node(newValue);
+            while (current != null)
             {
-                Node temp = new Node(nvalue);
-                temp = head;
-                while (temp.next != null)
-                    temp = temp.next;
-                temp.next = newNode;
+                if (beforValue.Equals(current.value))
+                {
+                    temp.next = head;
+                    head = temp;
+                    break;
+                }
 
-
+                if (beforValue.Equals(current.next.value))
+                {
+                    temp.next = current.next;
+                    current.next = temp;
+                    break;
+                }
+                current = current.next;
             }
 
+        }
 
+        // Function to adds a new node with the given new value immediately after the first node that has the value specified
+
+        public void InsertAfter(int afterValue, int newValue)
+        {
+            Node current = head;
+            Node temp = new Node(newValue);
+
+            while (current != null)
+            {
+                if (afterValue.Equals(current.value))
+                {
+                    temp.next = current.next;
+                    current.next = temp;
+                    break;
+                }
+                current = current.next;
+            }
         }
 
         public int kthFromEnd(int n)
@@ -96,185 +134,44 @@ namespace data_structures_and_algorithms
             catch (Exception e)
             {
 
-              //  Console.Write(array[i] + "  ");
+                //  Console.Write(array[i] + "  ");
 
                 Console.WriteLine(e.Message);
                 return -1;
 
             }
         }
+    }
 
-
-        public class Node
+    public class Node
+    {
+        public int value { get; set; }
+        public Node next { get; set; }
+        public Node(int value)
         {
-            public int value;
-            public Node next;
-            public Node(int value)
-            {
-                this.value = value;
-                this.next = null;
-            }
+            this.value = value;
+            this.next = null;
         }
-        internal class Program
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
         {
-            static void Main(string[] args)
-            {
 
-                Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World!");
 
 
 
-                int[] array1 = { 4, 10, 15, 26, 38, 65 };
-                int key = 26;
-                Console.WriteLine($"BinarySearch   { BinarySearch(array1, key)}");
-
-            }
-
-            /*   static void Main(string[] args)
-               {
-                   try
-                   {
-                       Console.WriteLine("Hello World!");
-
-                       LinkedList llist = new LinkedList();
-
-
-                       llist.Insert(20);
-                       llist.Insert(4);
-                       llist.Insert(15);
-                       llist.Insert(35);
-                       llist.kthFromEnd(1);
-
-
-                            Console.WriteLine("input the length of your array");
-                           int a = Convert.ToInt32(Console.ReadLine());
-                            int[] arr =new int[a] ;
-                            Console.WriteLine("input the the number to fill your array");
-
-                            for (int i = 0; i < arr.Length; i++)
-                            {
-                                arr[i] = Convert.ToInt32(Console.ReadLine());
-                            }
-
-                            Console.WriteLine("input the number to insert and shift to your array");
-                            int b = Convert.ToInt32(Console.ReadLine());
-
-
-                            Console.WriteLine("Now we need to fill your array");
-                            int[] array = new int[b];
-                            for (int i = 0; i < array.Length; i++)
-                            {
-                                Console.WriteLine($"Please enter the index {i + 1} of your array");
-                                array[i] = Convert.ToInt32(Console.ReadLine());
-                            }
-                            reverseArray(array);
-
-                            insertShiftArray(arr, b); 
-
-                       int[] array = { 4, 10, 15, 26, 38, 65 };
-                       int key = 26;
-                       if (BinarySearch(array, 0, array.Length, key) != -1)
-                       {
-                           Console.WriteLine(BinarySearch(array, 0, array.Length, key));
-                       }
-                       else
-                           Console.WriteLine(-1);
-                   }
-                   catch (Exception e)
-                   {
-                       Console.WriteLine(e.Message);
-
-
-                   }
-
-
-               }*/
-            static int[] insertShiftArray(int[] arr, int Numv)
-            {
-
-                int[] newArr = new int[arr.Length + 1];
-                int conv = Decimal.ToInt32(arr.Length / 2);
-                for (int i = 0; i < arr.Length; i++)
-                {
-                    if (i < conv) newArr[i] = arr[i];
-                    if (i == conv) newArr[i] = Numv;
-                    if (i >= conv) newArr[i + 1] = arr[i];
-
-                }
-                for (int i = 0; i < newArr.Length; i++)
-                {
-                    Console.Write(newArr[i] + " ");
-
-                }
-                return newArr;
-            }
-
-
-
-            public static int reverseArray(int[] array)
-            {
-
-                Console.WriteLine("Your Array: ");
-                for (int i = 0; i < array.Length; i++)
-                {
-                    Console.Write(array[i] + "  ");
-                }
-                Console.WriteLine();
-                Console.WriteLine("Your reverse Array is: ");
-                for (int i = array.Length - 1; i >= 0; i--)
-                {
-                    Console.Write(array[i] + "  ");
-                }
-                return array[0];
-            }
-
-            static int BinarySearch(int[] arr, int key)
-            {
-                int start = 0;
-                int end = arr.Length - 1;
-                while (start <= end)
-                {
-                    int middle = (start + end) / 2;
-                    if (arr[middle] == key)
-                    {
-                        return middle;
-                    }
-                    if (arr[middle] < key)
-                    {
-                        start = middle + 1;
-                    }
-                    else
-                    {
-                        end = middle - 1;
-                    }
-                }
-                return -1;
-            }
-            /*   int[] PassedArray = arr;
-               int Value = key;
-
-               int myIndex = 0 ;
-               for (int i = 0; i < PassedArray.Length; i++)
-               {
-                   if (PassedArray[i] == Value)
-                   {
-                       myIndex = i;
-                       break;
-                   }
-                   else
-                   {
-                       myIndex = -1;
-                   }
-               }
-               Console.WriteLine(myIndex); */
-
-
+            int[] array1 = { 4, 10, 15, 26, 38, 65 };
+            int key = 26;
+            Console.WriteLine($"BinarySearch   { BinarySearch(array1, key)}");
+            LinkedList linkedList = new LinkedList(8);
+            linkedList.Append(key);
 
         }
 
 
-
-
+        
 
 
         static int[] insertShiftArray(int[] arr, int Numv)
@@ -339,4 +236,6 @@ namespace data_structures_and_algorithms
         }
     }
 }
+
+
         
