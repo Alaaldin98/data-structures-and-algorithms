@@ -106,9 +106,7 @@ namespace data_structures_and_algorithms
         }
 
         public int kthFromEnd(int n)
-        {
-            try
-            {
+        { 
                 int len = 0;
                 Node temp = head;
 
@@ -130,16 +128,6 @@ namespace data_structures_and_algorithms
                     temp = temp.next;
                 Console.WriteLine(temp.value);
                 return temp.value;
-            }
-            catch (Exception e)
-            {
-
-                //  Console.Write(array[i] + "  ");
-
-                Console.WriteLine(e.Message);
-                return -1;
-
-            }
         }
     }
 

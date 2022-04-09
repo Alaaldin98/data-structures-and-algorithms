@@ -69,17 +69,7 @@ namespace TestLinkedList
             linked.Insert(27);
             Assert.Equal("[ 27 ] -> [ 8 ] -> [ 20 ] -> NULL", linked.Tostring());
         }
-        [Fact]
-        public void LLKth()
-        {
-            LinkedList list = new LinkedList(8);
-            list.Insert(3);
-            list.Insert(8);
-            list.Insert(2);
-            Assert.Equal(3, list.kthFromEnd(1));
-            Assert.Equal(-1, list.kthFromEnd(-4));
-        }
-
+  
     }
     public class UnitTest2
     {
@@ -140,5 +130,32 @@ namespace TestLinkedList
             list.InsertAfter(8, 5);
             Assert.Equal(5, list.head.next.value);
         }
+    }
+    public class kth
+    {
+        [Fact]
+        public void LLKth()
+        {
+            LinkedList list = new LinkedList(8);
+            list.Insert(3);
+            list.Insert(8);
+            list.Insert(2);
+           Assert.Equal(3, list.kthFromEnd(8));
+            Assert.Equal(-1, list.kthFromEnd(-4));
+        }
+      
+
+        // Test if k is not at the end, but somewhere in the middle of the linked list
+        [Fact]
+        public void Test5()
+        {
+            LinkedList list = new LinkedList(1);
+            list.Insert(3);
+            list.Insert(8);
+            list.Insert(2);
+            Assert.Equal(3, list.kthFromEnd(2));
+
+        }
+
     }
 }
