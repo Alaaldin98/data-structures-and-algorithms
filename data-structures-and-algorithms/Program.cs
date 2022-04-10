@@ -2,8 +2,157 @@
 
 namespace data_structures_and_algorithms
 {
+  public class Queue
+    {
+        public Node first;
+        public Node last;
+        public int length;
 
-    public class LinkedList
+        public Queue()
+        {
+            this.first = null;
+            this.last = null;
+            this.length = 0;
+        }
+
+        public int peek()
+        {
+            if (this.length > 0)
+            {
+                return this.first.value;
+            }
+            return -111111;  //returining large negative value if length is 0.
+        }
+
+        public void enqueue(int value)
+        {
+            Node newNode = new Node(value);
+            if (this.length == 0)
+            {
+                this.first = newNode;
+                this.last = newNode;
+            }
+            else
+            {
+                this.last.next = newNode;
+                this.last = newNode;
+            }
+            this.length++;
+        }
+
+        public int dequeue()
+        {
+            if (this.first == null)
+            {
+                return -1111111;
+            }
+            if (this.length == 0)
+            {
+                this.last = null;
+            }
+            Node holdingPointer = this.first;
+            this.first = this.first.next;
+
+            this.length--;
+
+            return holdingPointer.value;
+        }
+        public bool IsEmpty()
+        {
+            return this.first == null;
+        }
+
+
+        public void printQueue()
+        {
+            if (first == null)
+            {
+                return;
+            }
+            Node currentNode = first;
+            Console.Write(currentNode.value);
+            currentNode = currentNode.next;
+            while (currentNode != null)
+            {
+                Console.Write("-->" + currentNode.value);
+                currentNode = currentNode.next;
+            }
+            Console.WriteLine();
+        }
+
+    }
+       public class Stack
+    {
+        public Node top;
+        public Node bottom;
+        public int length;
+
+        public Stack()
+        {
+            this.top = null;
+            this.bottom = null;
+            this.length = 0;
+        }
+
+        public int peek()
+        {
+            if (this.length > 0)
+                return this.top.value;
+            return -100000; //returning -100000 if length is 0
+        }
+
+        public void push(int value)
+        {
+            Node newNode = new Node(value);
+            if (this.length == 0)
+            {
+                this.top = newNode;
+                this.bottom = newNode;
+            }
+            else
+            {
+                Node holdingPointer = this.top;
+                this.top = newNode;
+                this.top.next = holdingPointer;
+            }
+            this.length++;
+        }
+
+        public int pop()
+        {
+            if (this.top == null)
+            {
+                return -100000;
+            }
+            Node holdingPointer = this.top;
+            this.top = this.top.next;
+            this.length--;
+            return holdingPointer.value;
+        }
+
+        public void printStack()
+        {
+            if (top == null)
+            {
+                return;
+            }
+            Node currentNode = top;
+            Console.Write(currentNode.value);
+            currentNode = currentNode.next;
+            while (currentNode != null)
+            {
+                Console.Write("-->" + currentNode.value);
+                currentNode = currentNode.next;
+            }
+            Console.WriteLine();
+        }
+
+        public bool IsEmpty()
+        {
+            return top == null;
+        }
+    }
+        public class LinkedList
 
     {
         public Node head { get; set; }
@@ -145,6 +294,21 @@ namespace data_structures_and_algorithms
     {
         static void Main(string[] args)
         {
+            Stack s = new Stack();
+            s.push(10);
+            s.push(16);
+            s.push(100);
+            s.printStack();
+            Console.WriteLine(s.pop());
+            s.printStack();
+
+            Queue q = new Queue();
+            q.enqueue(10);
+            q.enqueue(7);
+            q.enqueue(26);
+            q.printQueue();
+            Console.WriteLine(q.dequeue());
+            q.printQueue();
 
             Console.WriteLine("Hello World!");
 
