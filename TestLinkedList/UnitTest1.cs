@@ -144,4 +144,140 @@ namespace TestLinkedList
             Assert.Equal(-1, list.kthFromEnd(-4));
         }
     }
-}
+    public class Queueandstack
+    {
+            //Test push onto a stack
+            [Fact]
+            public void Test1()
+            {
+                Stack stack = new Stack();
+                stack.push(1);
+                Assert.Equal(1, stack.top.value);
+            }
+
+            //Test push multiple values onto a stack
+            [Fact]
+            public void Test2()
+            {
+                Stack stack = new Stack();
+                stack.push(1);
+                stack.push(2);
+                stack.push(3);
+                Assert.Equal(3, stack.top.value);
+            }
+
+            //Test pop off the stack
+            [Fact]
+            public void Test3()
+            {
+                Stack stack = new Stack();
+                stack.push(1);
+                Assert.Equal(1, stack.pop());
+            }
+
+            //Test empty a stack after multiple pops
+            [Fact]
+            public void Test4()
+            {
+                Stack stack = new Stack();
+                stack.push(1);
+                stack.push(2);
+                stack.pop();
+                stack.pop();
+                Assert.Null(stack.pop());
+            }
+
+            //Test peek the top item on the stack
+            [Fact]
+            public void Test5()
+            {
+                Stack stack = new Stack();
+                stack.push(1);
+                stack.push(2);
+                Assert.Equal(2, stack.peek());
+            }
+
+            //Test to instantiate an empty stack
+            [Fact]
+            public void Test6()
+            {
+                Stack stack = new Stack();
+                Assert.True(stack.IsEmpty());
+            }
+
+            //Test to peek from empty stack
+            [Fact]
+            public void Test7()
+            {
+                Stack stack = new Stack();
+                Assert.Null(stack.peek());
+            }
+
+            //Test to enqueue into a queue
+            [Fact]
+            public void Test8()
+            {
+                Queue queue = new Queue();
+                queue.enqueue(1);
+                Assert.Equal(1, queue.first.value);
+            }
+
+            //Test to enqueue multiple values into a queue
+            [Fact]
+            public void Test9()
+            {
+                Queue queue = new Queue();
+                queue.enqueue(1);
+                queue.enqueue(2);
+                queue.enqueue(3);
+                Assert.Equal(3, queue.last.value);
+            }
+
+            //Test to dequeue out of a queue the expected value
+            [Fact]
+            public void Test10()
+            {
+                Queue queue = new Queue();
+                queue.enqueue(1);
+                Assert.Equal(1, queue.dequeue());
+            }
+
+            //Test to peek into a queue
+            [Fact]
+            public void Test11()
+            {
+                Queue queue = new Queue();
+                queue.enqueue(1);
+                queue.enqueue(2);
+                Assert.Equal(1, queue.peek());
+            }
+
+            //Test empty a queue after multiple dequeues
+            [Fact]
+            public void Test12()
+            {
+                Queue queue = new Queue();
+                queue.enqueue(1);
+                queue.enqueue(2);
+                queue.dequeue();
+                queue.dequeue();
+                Assert.Null(queue.dequeue());
+            }
+
+            //Test to instantiate an empty queue
+            [Fact]
+            public void Test13()
+            {
+                Queue queue = new Queue();
+                Assert.Null(queue.first.value);
+            }
+
+            //Test to dequeue or peek on empty queue raises exception
+            [Fact]
+            public void Test14()
+            {
+                Queue queue = new Queue();
+                Assert.Null(queue.dequeue());
+            }
+        }
+        }
