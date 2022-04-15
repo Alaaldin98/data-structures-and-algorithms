@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace data_structures_and_algorithms
 {
     public class LinkedList
@@ -131,6 +132,25 @@ namespace data_structures_and_algorithms
                 temp = temp.next;
             Console.WriteLine(temp.value);
             return temp.value;
+        }
+        public static LinkedList ZipLists(LinkedList list1, LinkedList list2)
+        {
+            Node current1 = list1.head;
+            Node current2 = list2.head;
+
+            while (current2 != null)
+            {
+                if (current1 == null)
+                {
+                    list1.Append(current2.value);
+                    current2 = current2.next;
+                }
+                else
+                {
+                    current1 = current1.next;
+                }
+            }
+            return list1;
         }
     }
 }
