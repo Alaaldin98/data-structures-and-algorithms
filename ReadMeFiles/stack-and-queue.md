@@ -1,17 +1,18 @@
 ## Stacks and Queues
 
+**Stack** : Is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out).
+
+**Queue** : Is an abstract data structure, somewhat similar to Stacks. Unlike stacks, a queue is open at both its ends. One end is always used to insert data (enqueue) and the other is used to remove data (dequeue). Queue follows First-In-First-Out methodology, i.e., the data item stored first will be accessed first.
+
+
 ###  Node Class
 
 ```C#
  public class Node
     {
-        public int value { get; set; }
-        public Node next { get; set; }
-        public Node(int value)
-        {
-            this.value = value;
-            this.next = null;
-        }
+        public object Value { get; set; }
+        public Node Next { get; set; }
+
     }
 ```
 ###### Stack Methods
@@ -39,19 +40,15 @@
 ### Stack
 
 ```C#
- public class Stack
+  public class Stack
     {
-        public Node top;
-        public Node bottom;
-        public int length;
+        public Node top { get; set; }
 
         public Stack()
         {
             this.top = null;
-            this.bottom = null;
-            this.length = 0;
         }
-    }
+     }
 ```
 
 #### methods:
@@ -60,44 +57,49 @@
 ```C#
  public void push(int value)
         {
-            Node newNode = new Node(value);
-            if (this.length == 0)
+            Node temp = new Node();
+            temp.Value = value;
+
+            if (IsEmpty())
             {
-                this.top = newNode;
-                this.bottom = newNode;
+                top = temp;
             }
             else
             {
-                Node holdingPointer = this.top;
-                this.top = newNode;
-                this.top.next = holdingPointer;
+                temp.Next = top;
+                top = temp;
             }
-            this.length++;
         }
 ```
 **pop**
 ```C#
  public int pop()
         {
-            if (this.top == null)
+             try
             {
-                return -100000;
+                Node temp = top;
+                top = top.Next;
+                temp.Next = null;
+                return temp.Value;
             }
-            Node holdingPointer = this.top;
-            this.top = this.top.next;
-            this.length--;
-            return holdingPointer.value;
+            catch (NullReferenceException e)
+            {
+                return null;
+            }
         }
 ```
 
 **peek**
 ```C#
 public int peek()
-        {
-            if (this.length > 0)
-                return this.top.value;
-            return -100000; //returning -100000 if length is 0
-        }
+        try
+            {
+                return top.Value;
+            }
+            catch (NullReferenceException)
+            {
+                return null;
+            }
 ```
 
 **is empty**
@@ -112,15 +114,12 @@ public int peek()
 
 ```C#
 {
-        public Node first;
-        public Node last;
-        public int length;
-
+        public Node front { get; set; }
+        public Node rear { get; set; }
         public Queue()
         {
-            this.first = null;
-            this.last = null;
-            this.length = 0;
+            this.front = null;
+            this.rear = null;
         }
 }
 
@@ -132,18 +131,18 @@ public int peek()
 ```C#
 public void enqueue(int value)
         {
-            Node newNode = new Node(value);
-            if (this.length == 0)
+             Node temp = new Node();
+            temp.Value = value;
+            if (IsEmpty())
             {
-                this.first = newNode;
-                this.last = newNode;
+                front = temp;
+                rear = temp;
             }
             else
             {
-                this.last.next = newNode;
-                this.last = newNode;
+                rear.Next = temp;
+                rear = temp;
             }
-            this.length++;
         }
 ```
 
@@ -152,20 +151,18 @@ public void enqueue(int value)
 ```C#
  public int dequeue()
         {
-            if (this.first == null)
+            try
             {
-                return -1111111;
+                Node temp = new Node();
+                temp = front;
+                front = front.Next;
+                temp.Next = null;
+                return temp.Value;
             }
-            if (this.length == 0)
+            catch (NullReferenceException e)
             {
-                this.last = null;
+                return null;
             }
-            Node holdingPointer = this.first;
-            this.first = this.first.next;
-
-            this.length--;
-
-            return holdingPointer.value;
         }
 ```
 
@@ -173,11 +170,14 @@ public void enqueue(int value)
 ```C#
  public int peek()
         {
-            if (this.length > 0)
+            try
             {
-                return this.first.value;
+                return front.Value;
             }
-            return -111111;  //returining large negative value if length is 0.
+            catch (NullReferenceException)
+            {
+                return null;
+            }
         }
 ```
 
