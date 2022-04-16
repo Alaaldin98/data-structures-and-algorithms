@@ -3,7 +3,7 @@
 
 
 ## Whiteboard Process
-![stack-queue-pseudo](stack-queue-pseudo.jpg)
+![stack-queue-pseudo](../stack-queue-pseudo.jpg)
 
 
 ## Approach & Efficiency
@@ -16,7 +16,7 @@ Big O Complexity
 
 
 ## Test 
-![](Testpseude.png)
+![](../Testpseude.png)
 
 
 
