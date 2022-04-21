@@ -12,3 +12,4 @@
 |  linked-list-zip   |   [linked-list-zip](ReadMeFiles/ZipList.md)   |
 |  stack and queue   |   [stack and queue](ReadMeFiles/stack-and-queue.md)   |
 |  stack queue pseudo   |   [stack queue pseudo](ReadMeFiles/stack-queue-pseudo.md)   |
+|  stack queue animal shelter   |   [stack queue animal shelter](ReadMeFiles/stack-queue-animal-shelter.md)   |
