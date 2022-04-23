@@ -64,6 +64,6 @@ namespace data_structures_and_algorithms
         {
             return top == null;
         }
-
+        
     }
 }
