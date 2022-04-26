@@ -14,3 +14,4 @@
 |  stack queue pseudo   |   [stack queue pseudo](ReadMeFiles/stack-queue-pseudo.md)   |
 |  stack queue animal shelter   |   [stack queue animal shelter](ReadMeFiles/stack-queue-animal-shelter.md)   |
 |  stack queue brackets   |   [stack queue brackets](ReadMeFiles/stack-queue-brackets.md)   |
+|  Trees Code Challenge   |   [Trees](ReadMeFiles/tree.md)   |
