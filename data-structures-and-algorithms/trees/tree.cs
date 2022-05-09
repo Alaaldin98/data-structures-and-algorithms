@@ -1,9 +1,11 @@
 ﻿namespace data_structures_and_algorithms.trees
 {
-    internal class tree
+    public class tree
     {
+        public Node Root;
         public class Node
         {
+           
             public Node left { get; set; }
             public Node right { get; set; }
             public int value { get; set; }
@@ -18,6 +20,9 @@
 
         public class BinaryTree
         {
+           
+
+            public Node Root { get; set; }
             public void preOrder(Node root)
             {
                 if (root.left != null)
@@ -64,7 +69,7 @@
         }
         class BinarySearchTree
         {
-            private Node root;
+            public Node root;
             public BinarySearchTree()
             {
                 this.root = null;
