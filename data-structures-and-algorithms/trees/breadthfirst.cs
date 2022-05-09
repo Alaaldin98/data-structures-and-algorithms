@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using static data_structures_and_algorithms.trees.tree;
 
 namespace data_structures_and_algorithms.trees
 {
@@ -8,21 +7,22 @@ namespace data_structures_and_algorithms.trees
         public List<tree> breadthFirst(tree root)
         {
 
-            queue breadth =  new queue();
-            breadth.enqueue(root);
+            Queue breadth = new Queue();
+            breadth.Enqueue(root);
 
-  while (!breadth.isempty)
+            while (!breadth.IsEmpty)
             {
-                node front = breadth.dequeue();
+                Node front = (Node)breadth.Dequeue();
 
 
-    if (front.left is not null)
-                    breadth.enqueue(front.left);
+                if (front.left is not null)
+                    breadth.Enqueue(front.left);
 
-    if (front.right is not null)
-                    breadth.enqueue(front.right);
-                        }
-}
+                if (front.right is not null)
+                    breadth.Enqueue(front.right);
+            }
+            return breadth;
+        } 
 
     }
 }
