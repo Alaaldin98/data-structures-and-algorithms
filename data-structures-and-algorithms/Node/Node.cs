@@ -8,7 +8,16 @@ namespace data_structures_and_algorithms
 {
     public class Node
     {
-        public object Value { get; set; }
+        public Node left { get; set; }
+        public Node right { get; set; }
+        public int value { get; set; }
+
+        public Node(int value)
+        {
+            this.left = null;
+            this.right = null;
+            this.value = value;
+        }
         public Node Next { get; set; }
 
     }

@@ -3,7 +3,7 @@ using static data_structures_and_algorithms.trees.tree;
 
 namespace data_structures_and_algorithms.trees
 {
-    internal class breadthfirst
+    public class breadthfirst
     {
         public List<tree> breadthFirst(tree root)
         {
