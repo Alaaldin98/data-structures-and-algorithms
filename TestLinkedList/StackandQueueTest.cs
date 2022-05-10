@@ -17,7 +17,7 @@ namespace TestLinkedList
         {
             Stack stack = new Stack();
             stack.Push(1);
-            Assert.Equal(1, stack.top.Value);
+            Assert.Equal(1, stack.top.value);
         }
 
 
@@ -28,7 +28,7 @@ namespace TestLinkedList
             stack.Push(1);
             stack.Push(2);
             stack.Push(3);
-            Assert.Equal(3, stack.top.Value);
+            Assert.Equal(3, stack.top.value);
         }
 
         [Fact]
@@ -78,7 +78,7 @@ namespace TestLinkedList
         {
             Queue queue = new Queue();
             queue.Enqueue(1);
-            Assert.Equal(1, queue.front.Value);
+            Assert.Equal(1, queue.front.value);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace TestLinkedList
             queue.Enqueue(1);
             queue.Enqueue(2);
             queue.Enqueue(3);
-            Assert.Equal(3, queue.rear.Value);
+            Assert.Equal(3, queue.rear.value);
         }
 
         [Fact]

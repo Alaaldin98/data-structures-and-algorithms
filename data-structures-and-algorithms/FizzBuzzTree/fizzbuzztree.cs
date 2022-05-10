@@ -1,52 +1,90 @@
-﻿using data_structures_and_algorithms.trees;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace data_structures_and_algorithms.FizzBuzzTree
 {
-   
-    public class fizzbuzztree
+
+    public class FNode
     {
-        public static Node Root;
+        public int Value { get; set; }
 
-
-        public void FizzBuzzTree()
+        public List<FNode> Branch = new List<FNode>() { };
+        public FNode(int Value)
         {
-            Traverse(Root);
+            this.Value = Value;
+
         }
-        public List<string> Traverse(Node node)
+        public List<FNode> getBranch()
         {
-            if (Root == null)
+            return Branch;
+        }
+
+        public void AddBranch(FNode newFNode)
+        {
+            this.Branch.Add(newFNode);
+        }
+       
+       
+        public class K_Ary_Tree
+        {
+            public FNode Root;
+            public K_Ary_Tree(FNode newFNode)
             {
-                throw new Exception("Tree is empty");
+                Root = newFNode;
+
             }
-            List<string> list = new List<string>();
-            if(node.value % 15 == 0)
+            public List<string> FizzBuzzTree(K_Ary_Tree MyKTree)
             {
-                list.Add("FizzBuzz");
-            } else if(node.value % 5 == 0)
-            {
-                list.Add("Buzz");
-            } else if(node.value % 3 == 0)
-            {
-                list.Add("Fizz");
+
+                Queue<FNode> MyQueue = new Queue<FNode>();
+                List<string> MyList = new List<string>();
+               
+                if (MyKTree.Root == null)
+                {
+                    throw new Exception("Tree Is Empty!");
+                }
+                else
+                {
+                    MyQueue.Enqueue(MyKTree.Root);
+                    while (MyQueue.Count > 0)
+                    {
+                        FNode temp = MyQueue.Dequeue();
+                        if (temp.Value % 3 == 0 && temp.Value % 5 == 0)
+                        {
+                           
+                            MyList.Add("FizzBuzz");
+                        }
+
+
+                        else if (temp.Value % 3 == 0)
+                        {
+                            
+                            MyList.Add("Fizz");
+                        }
+                        else if (temp.Value % 5 == 0)
+                        {
+                           
+                            MyList.Add("Buzz");
+                        }
+
+                        else
+                        {
+                            MyList.Add(temp.Value.ToString());
+                           
+                        }
+                        if (temp.Branch.Count > 0)
+                        {
+                            foreach (var child in temp.Branch)
+                            {
+                                MyQueue.Enqueue(child);
+                            }
+                        }
+                    }
+                    return MyList;
+
+                }
             }
-            else
-            {
-                list.Add($"{node.value}");
-            }
-            if(node.left != null)
-            {
-                Traverse(node.left);
-            }if(node.right != null)
-            {
-                Traverse(node.right);
-            }
-            return list;
-           
         }
     }
 }

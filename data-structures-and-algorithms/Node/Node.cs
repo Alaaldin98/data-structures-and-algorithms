@@ -18,6 +18,11 @@ namespace data_structures_and_algorithms
             this.right = null;
             this.value = value;
         }
+
+        public Node()
+        {
+        }
+
         public Node Next { get; set; }
 
     }
