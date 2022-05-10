@@ -9,9 +9,12 @@
 4- If the value is not divisible by 3 or 5, simply turn the number into a String.
 
 Whiteboard Process
-![fbt](fbt.jpg)
+![fbt](newfbt.jpg)
 
 Approach & Efficiency
 Time Complexity : O(n)
 
-Space Complexity : O(1)
+Space Complexity : O(n)
+
+## Tests
+![fbt](Test.png)

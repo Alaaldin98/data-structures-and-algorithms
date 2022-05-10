@@ -19,7 +19,7 @@ namespace data_structures_and_algorithms
         public void Enqueue(object value)
         {
             Node temp = new Node();
-            temp.Value = value;
+            temp.value = (int)value;
             if (IsEmpty())
             {
                 front = temp;
@@ -40,7 +40,7 @@ namespace data_structures_and_algorithms
                 temp = front;
                 front = front.Next;
                 temp.Next = null;
-                return temp.Value;
+                return temp.value;
             }
             catch (NullReferenceException e)
             {
@@ -52,7 +52,7 @@ namespace data_structures_and_algorithms
         {
             try
             {
-                return front.Value;
+                return front.value;
             }
             catch (NullReferenceException)
             {

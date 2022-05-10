@@ -18,7 +18,7 @@ namespace data_structures_and_algorithms
         public void Push(object value)
         {
             Node temp = new Node();
-            temp.Value = value;
+            temp.value = (int)value;
 
             if (IsEmpty())
             {
@@ -39,7 +39,7 @@ namespace data_structures_and_algorithms
                 Node temp = top;
                 top = top.Next;
                 temp.Next = null;
-                return temp.Value;
+                return temp.value;
             }
             catch (NullReferenceException e)
             {
@@ -52,7 +52,7 @@ namespace data_structures_and_algorithms
         {
             try
             {
-                return top.Value;
+                return top.value;
             }
             catch (NullReferenceException)
             {
