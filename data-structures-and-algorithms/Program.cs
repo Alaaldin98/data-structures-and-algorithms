@@ -1,5 +1,6 @@
 ﻿using System;
 using data_structures_and_algorithms.stack_queue_brackets;
+using data_structures_and_algorithms.QuickSort;
 
 namespace data_structures_and_algorithms
 {
@@ -16,6 +17,17 @@ namespace data_structures_and_algorithms
                 Console.WriteLine("Balanced\n");
             else
                 Console.WriteLine("Not Balanced\n");
+
+
+
+            int[] arr = { 7, 11, 13, 5, 6, 7 };
+            Quick_Sort quick_Sort = new Quick_Sort();
+            quick_Sort.QuickSort(arr);
+
+            foreach (int item in arr)
+            {
+                Console.Write(item + " ");
+            }
         }
 
     }
