@@ -2,8 +2,7 @@
 Merge sort is one of the most efficient sorting algorithms. It works on the principle of Divide and Conquer. Merge sort repeatedly breaks down a list into several sublists until each sublist consists of a single element and merging those sublists in a manner that results into a sorted list.
 
 
-![](MergeSort.jpg)
-
+![](https://cdn.kastatic.org/ka-perseus-images/ace963383bea8d154f6abd1322a06a73b56b4628.png)
 ## Solution
 ```C#
 using System;
@@ -97,3 +96,6 @@ namespace MergeSort
     }
 }
 ```
+#### whiteboard
+
+![Flowchart(22)](Flowchart(22).jpg)
