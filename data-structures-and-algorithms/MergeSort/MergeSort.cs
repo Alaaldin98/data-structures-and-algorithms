@@ -85,6 +85,17 @@ namespace MergeSort
             {
                 Console.WriteLine(item);
             }
+
+        }
+        public static void Main(String[] args)
+        {
+            int[] arr = { 12, 11, 13, 5, 6, 7 };
+            Console.WriteLine("Given Array");
+            Console.WriteLine("\n12 \n11 \n13 \n5 \n6 \n7");
+           
+           
+            Console.WriteLine("\nSorted array");
+            print(arr);
         }
     }
 }
