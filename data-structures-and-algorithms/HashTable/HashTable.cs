@@ -14,7 +14,7 @@ namespace data_structures_and_algorithms.HashTable
         }
     }
 
-    class HashTables
+   public class HashTables
     {
         private class MyNodes : List<Myhashtable> { }
         private int length;
@@ -26,7 +26,7 @@ namespace data_structures_and_algorithms.HashTable
             this.data = new MyNodes[size];
         }
 
-        private int hash(string key)
+        public int hash(string key)
         {
             int hash = 0;
             for (int i = 0; i < key.Length; i++)

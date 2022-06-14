@@ -1,6 +1,7 @@
 
 using System;
 using data_structures_and_algorithms.HashTable;
+using data_structures_and_algorithms.HashTable.Hashmap;
 using data_structures_and_algorithms.stack_queue_brackets;
 
 
@@ -17,7 +18,10 @@ namespace data_structures_and_algorithms
             h.set("Omar", 54);
             Console.Write(h.get("Alaa"));
             h.keys();
-
+            hashmap_repeated_word hash = new hashmap_repeated_word();
+            Console.WriteLine("Enter the word!..");
+            string Word = Console.ReadLine();   // Read the Input string from User at Run Time  
+            hash.HashmapRepeatedWord(Word);
 
             //Console.WriteLine ( "Enter an expression:");
             //string expression = Convert.ToString(Console.ReadLine());
