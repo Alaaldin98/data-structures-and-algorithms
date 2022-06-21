@@ -13,7 +13,8 @@ namespace data_structures_and_algorithms
         public Node right { get; set; }
         public int value { get; set; }
         public int Data { get; set; }
-
+        public string Key { get; set; }
+        public string Value { get; set; }
         public  Node(int value)
         {
             this.left = null;
@@ -26,7 +27,11 @@ namespace data_structures_and_algorithms
         public Node()
         {
         }
-
+        public Node(string key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
 
     }
 }

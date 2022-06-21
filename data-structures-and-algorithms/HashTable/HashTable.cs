@@ -2,28 +2,28 @@
 
 namespace data_structures_and_algorithms.HashTable
 {
-    public class Myhashtable
-    {
-        public string key { get; set; }
-        public int value { get; set; }
 
-        public Myhashtable(string key, int value)
+    public class Node
+    {
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public Node Next { get; set; }
+
+        public Node(string key, string value)
         {
-            this.key = key;
-            this.value = value;
+            Key = key;
+            Value = value;
         }
     }
-
-   public class HashTables
+    public class HashTables
     {
-        private class MyNodes : List<Myhashtable> { }
-        private int length;
-        private MyNodes[] data;
+        private static int tableSize;
+        private Node[] Table { get; set; }
 
         public HashTables(int size)
         {
-            this.length = size;
-            this.data = new MyNodes[size];
+            tableSize = size;
+            Table = new Node[tableSize];
         }
 
         public int hash(string key)
@@ -31,52 +31,76 @@ namespace data_structures_and_algorithms.HashTable
             int hash = 0;
             for (int i = 0; i < key.Length; i++)
             {
-                hash = (hash + (int)key[i] * i) % this.length;
+                hash = (hash + (int)key[i] * i) % 1024;
             }
             return hash;
         }
 
-        public void set(string key, int value)
+        public void Set(string key, string value)
         {
             int index = hash(key);
-            if (this.data[index] == null)
+            Node newNode = new Node(key, value);
+
+            if (Table[index] == null)
             {
-                this.data[index] = new MyNodes();
+                Table[index] = newNode;
             }
-            this.data[index].Add(new Myhashtable(key, value));
+            else
+            {
+                Node current = Table[index];
+                while (current.Next != null)
+                {
+                    current = current.Next;
+                }
+                current.Next = new Node(key, value);
+            }
         }
 
-        public int get(string key)
+        public Node Get(string key)
         {
             int index = hash(key);
-            if (this.data[index] == null)
+            Node current = Table[index];
+
+            while (current != null)
             {
-                return 0;
-            }
-            foreach (var node in this.data[index])
-            {
-                if (node.key.Equals(key))
+                if (current.Key == key)
                 {
-                    return node.value;
+                    return current;
                 }
+                current = current.Next;
             }
-            return 0;
+
+            return null;
         }
 
         public List<string> keys()
         {
-            List<string> result = new List<string>();
-            for (int i = 0; i < this.data.Length; i++)
+            List<string> KeyList = new List<string>();
+            for (int i = 0; i < Table.Length; i++)
             {
-                if (this.data[i] != null)
+                if (Table[i] != null)
                 {
-                    for (int j = 0; j < length; j++)
-                    {
-                        result.Add(this.data[i][j].key);
-                    }
+                    KeyList.Add(Table[i].Key);
                 }
             }
-            return result;
+            return KeyList;
+
+        }
+        public bool Contains(string key)
+        {
+            int index = hash(key);
+            Node current = Table[index];
+
+            while (current != null)
+            {
+                if (current.Key == key)
+                {
+                    return true;
+                }
+                current = current.Next;
+            }
+
+            return false;
         }
     }
 }
