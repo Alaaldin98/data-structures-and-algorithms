@@ -8,34 +8,29 @@ namespace data_structures_and_algorithms.HashTable.Hashmap
 {
     public class hashmap_repeated_word 
     {
-        public string HashmapRepeatedWord(string Word)
+        public static string Repeated(string word)
         {
-           
-          
-            var Value = Word.Split(' ');  // Split the string using 'Space' and stored it an var variable  
-            Dictionary<string, int> RepeatedWordCount = new Dictionary<string, int>();
-            for (int i = 0; i < Value.Length; i++) //loop the splited string  
+            word = word.ToLower();
+            string[] arrWords = word.Split(' ');
+            int count = 0;
+
+            for (int i = 0; i < arrWords.Length; i++)
             {
-                if (RepeatedWordCount.ContainsKey(Value[i])) // Check if word already exist in dictionary update the count  
+                for (int j = 0; j < arrWords.Length; j++)
                 {
-                    int value = RepeatedWordCount[Value[i]];
-                    RepeatedWordCount[Value[i]] = value + 1;
+                    if (arrWords[i] == arrWords[j])
+                    {
+                        count++;
+                    }
                 }
-                else
+                if (count > 1)
                 {
-                    RepeatedWordCount.Add(Value[i], 1);  // if a string is repeated and not added in dictionary , here we are adding   
+                    return arrWords[i];
                 }
-                
+                count = 0;
             }
-            Console.WriteLine();
-            Console.WriteLine("------------------------------------");
-            Console.WriteLine("Repeated words");
-            foreach (KeyValuePair<string, int> kvp in RepeatedWordCount)
-            {
-                Console.WriteLine(kvp.Key);  // Print the Repeated word
-                return kvp.Key;
-            }
-            return "";
+
+            return "No repetition";
         }
     }
 }
