@@ -1,132 +1,119 @@
-﻿namespace data_structures_and_algorithms.trees
+﻿using System.Collections.Generic;
+
+namespace data_structures_and_algorithms.trees
 {
-    public class tree
+
+
+
+    public class BinaryTree
     {
-        public Node Root;
-        public class Node
+        public List<int> list = new List<int>();
+        public BinaryTree()
         {
-           
-            public Node left { get; set; }
-            public Node right { get; set; }
-            public int value { get; set; }
-
-            public Node(int value)
-            {
-                this.left = null;
-                this.right = null;
-                this.value = value;
-            }
+            root = null;
         }
 
-        public class BinaryTree
+        public Node root { get; set; }
+        public void preOrder(Node root)
         {
-           
+            if (root.left != null)
+                preOrder(root.left);
+            if (root.right is not null)
+                preOrder(root.right);
+        }
+        public int[] inOrder(Node root)
+        {
+            if (root.left != null)
+                inOrder(root.left);
+            if (root.right is not null)
+                inOrder(root.right);
+            return list.ToArray();
+        }
+        public int[] postOrder(Node root)
+        {
+            if (root.left != null)
+                postOrder(root.left);
+            if (root.right is not null)
+                postOrder(root.right);
+            return list.ToArray();
+        }
+        public static int findMax(Node node)
+        {
 
-            public Node Root { get; set; }
-            public void preOrder(Node root)
+            if (node == null)
             {
-                if (root.left != null)
-                    preOrder(root.left);
-                if (root.right is not null)
-                    preOrder(root.right);
+                return int.MinValue;
             }
-            public void inOrder(Node root)
+
+            int res = node.value;
+            int lres = findMax(node.left);
+            int rres = findMax(node.right);
+
+            if (lres > res)
             {
-                if (root.left != null)
-                    inOrder(root.left);
-                if (root.right is not null)
-                    inOrder(root.right);
+                res = lres;
             }
-            public void postOrder(Node root)
+            if (rres > res)
             {
-                if (root.left != null)
-                    postOrder(root.left);
-                if (root.right is not null)
-                    postOrder(root.right);
+                res = rres;
             }
-            public static int findMax(Node node)
+            return res;
+        }
+    }
+    public class BinarySearchTree : BinaryTree
+    {
+        public void Add(int value)
+        {
+            Node before = null;
+
+            Node after = this.root;
+
+            while (after != null)
             {
+                before = after;
+                if (value < after.value)
+                    after = after.left;
+                else if (value > after.value)
+                    after = after.right;
+            }
 
-                if (node == null)
-                {
-                    return int.MinValue;
-                }
+            Node newNode = new Node(value);
 
-                int res = node.value;
-                int lres = findMax(node.left);
-                int rres = findMax(node.right);
-
-                if (lres > res)
-                {
-                    res = lres;
-                }
-                if (rres > res)
-                {
-                    res = rres;
-                }
-                return res;
+            if (this.root == null)
+                this.root = newNode;
+            else
+            {
+                if (value < before.value)
+                    before.left = newNode;
+                else
+                    before.right = newNode;
             }
         }
-        class BinarySearchTree
+        public bool Contains(int value)
         {
-            public Node root;
-            public BinarySearchTree()
+            if (root == null)
             {
-                this.root = null;
-            }
-
-            public void Add(int value)
-            {
-                Node newNode = new Node(value);
-                if (this.root == null)
-                {
-                    this.root = newNode;
-                    return;
-                }
-
-                Node currentNode = this.root;
-                while (true)
-                {
-                    if (currentNode.value > value)
-                    {
-                        if (currentNode.left == null)
-                        {
-                            currentNode.left = new Node(value);
-                            return;
-                        }
-                        currentNode = currentNode.left;
-                    }
-                    else
-                    {
-                        if (currentNode.right == null)
-                        {
-                            currentNode.right = new Node(value);
-                            return;
-                        }
-                        currentNode = currentNode.right;
-                    }
-                }
-            }
-
-            public bool Contains(int value)
-            {
-                if (root != null)
-                {
-                    if (root.value == value)
-                    {
-                        return true;
-                    }
-                    else if (root.value > value)
-                    {
-                        return Contains(value);
-                    }
-                    else if (root.value < value)
-                    {
-                        return Contains(value);
-                    }
-                }
                 return false;
             }
+
+            Node current = root;
+
+            while (current != null)
+            {
+                if (current.value == value)
+                {
+                    return true;
+                }
+                else if (value < current.value)
+                {
+                    current = current.left;
+                }
+                else if (value > current.value)
+                    current = current.right;
+            }
+
+            return false;
         }
+
     }
 }
