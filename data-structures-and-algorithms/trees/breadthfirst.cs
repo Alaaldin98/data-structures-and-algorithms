@@ -4,12 +4,12 @@ namespace data_structures_and_algorithms.trees
 {
     public class breadthfirst
     {
-        public List<tree> breadthFirst(tree root)
+        public List<BinaryTree> breadthFirst(BinaryTree root)
         {
 
             Queue breadth = new Queue();
             breadth.Enqueue(root);
-            List < tree > breadthFirst = new List<tree>();
+            List <BinaryTree> breadthFirst = new List<BinaryTree>();
 
             while (breadth != null)
             {
