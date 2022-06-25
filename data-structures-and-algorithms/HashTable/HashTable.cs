@@ -18,7 +18,7 @@ namespace data_structures_and_algorithms.HashTable
     public class HashTables
     {
         private static int tableSize;
-        private Node[] Table { get; set; }
+        public Node[] Table { get; set; }
 
         public HashTables(int size)
         {
