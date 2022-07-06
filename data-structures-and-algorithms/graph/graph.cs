@@ -115,12 +115,18 @@ namespace data_structures_and_algorithms.graph
         private Vertex start;
         private Vertex end;
         private int weight;
+        private Node node;
 
         public Edge(Vertex startV, Vertex endV, int inputWeight)
         {
             this.start = startV;
             this.end = endV;
             this.weight = inputWeight;
+        }
+
+        public Edge(Node node)
+        {
+            this.node = node;
         }
 
         public Vertex getStart()
