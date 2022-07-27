@@ -4,144 +4,140 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_structures_and_algorithms.graph
+namespace Graphss
 {
-    public class graph
+    public class Graph
     {
-        private List<Vertex> vertices;
-        private bool isWeighted;
-        private bool isDirected;
-        public graph(bool inputIsWeighted, bool inputIsDirected)
+        public List<Node> Nodes { get; set; } = new List<Node>();
+        public void AddEdge(Node root, Node addNode)
         {
-            this.vertices = new List<Vertex>();
-            this.isWeighted = inputIsWeighted;
-            this.isDirected = inputIsDirected;
-        }
-        public Vertex AddNode(int val)
-        {
-            Vertex newvertex = new Vertex(val);
-            vertices.Add(newvertex);
-            return newvertex;
-        }
-        public void AddEdge(Vertex vertex1, Vertex vertex2, int weight)
-        {
-            if (!this.isWeighted)
+            root.Children.Add(addNode);
+            addNode.Children.Add(root);
+            if (!Nodes.Contains(root))
             {
-                weight = (int)(int?)null;
+                Nodes.Add(root);
             }
-            vertex1.addEdge(vertex2, weight);
-            if (!this.isDirected)
+            if (!Nodes.Contains(addNode))
             {
-                vertex2.addEdge(vertex1, weight);
+                Nodes.Add(addNode);
             }
         }
-        public List<Vertex> GetNodes()
+        public void AddEdge(Node firstNode, Node secondNode, int weight)
         {
-            if (vertices.Count == 0)
+            if (firstNode == secondNode)
             {
-                return null;
+                Node point = Nodes.Find(v => v.Value == firstNode.Value);
+                Edge edge = new Edge(point, weight);
+                Nodes.Find(v => v.Value == firstNode.Value).Edge.Add(edge);
+                return;
             }
-            else
-            {
-                return vertices;
 
-            }
+            Node firstPoint = Nodes.Find(v => v.Value == firstNode.Value);
+            Node secondPoint = Nodes.Find(v => v.Value == secondNode.Value);
+
+            Edge firstEdge = new Edge(secondPoint, weight);
+            firstPoint.Edge.Add(firstEdge);
+
+            Edge secondEdge = new Edge(firstPoint, weight);
+            secondPoint.Edge.Add(secondEdge);
         }
-        public List<Edge> GetNeighbors(Vertex node)
+
+        public Object AddNode(Object value)  // Adds a node to the graph.
         {
-            return vertices.Find(v => v.value == node.value).edges;
+            Node node = new Node(value);
+            Nodes.Add(node);
+            return node;
         }
+        public List<Node> GetNodes()
+        {
+            return Nodes;
+        }
+
         public int Size()
         {
-            return vertices.Count;
+            return Nodes.Count;
         }
 
-        public void PrintGraph(List<int>[] adj, int V)
+        public List<Edge> GetNeighbors(Node node) // Returns a count of all the nodes in a graph
         {
-            for (int v = 0; v < V; ++v)
-            {
-                Console.Write("vertex " + v + " ");
-                foreach (int x in adj[v])
-                    Console.Write("-> " + x);
-                Console.Write("\n");
-            }
-            Console.Write("\n");
+            return Nodes.Find(v => v.Value == node.Value).Edge;
         }
-        public List<Vertex> BreadthFirst(Vertex vertex)
+        public List<Node> GetNeighbor(Node root)
         {
-            List<Vertex> visitedVertices = new List<Vertex>();
-            Queue<Vertex> visitQueue = new Queue<Vertex>();
-            List<Vertex> visited = new List<Vertex>();
-            visitQueue.Enqueue(vertex);
-            visited.Add(vertex);
-            if (visitQueue.Count == 0)
+            return root.Children;
+        }
+
+
+        public List<Node> BreadthFirst(Node root)
+        {
+            List<Node> order = new List<Node>();
+            Queue<Node> breadth = new Queue<Node>();
+            breadth.Enqueue(root);
+            root.Visited = true;  // This makes sure that the root isn't returned twice
+
+            while (breadth.TryPeek(out root))
             {
-                throw new Exception("no nodes added");
-            }
-            while (visitQueue.Count != 0)
-            {
-                Vertex front = visitQueue.Dequeue();
-                visitedVertices.Add(front);
-                foreach (Edge child in ((Vertex)front).edges)
+                Node front = breadth.Dequeue();
+                order.Add(front);
+
+                foreach (Node child in front.Children)
                 {
-                    Vertex neighbor = child.getEnd();
-                    if (!visited.Contains(neighbor))
+                    if (!child.Visited)
                     {
-                        visited.Add(neighbor);
-                        visitQueue.Enqueue(neighbor);
+                        child.Visited = true;
+                        breadth.Enqueue(child);
                     }
                 }
             }
-            return visitedVertices;
-        }
-    }
-    public class Vertex
-    {
-        public int value { get; set; }
-        public List<Edge> edges;
-
-        public Vertex(int value)
-        {
-            this.value = value;
-            this.edges = new List<Edge>();
-        }
-        public void addEdge(Vertex endVertex, int weight)
-        {
-            this.edges.Add(new Edge(this, endVertex, weight));
-        }
-    }
-    public class Edge
-    {
-        private Vertex start;
-        private Vertex end;
-        private int weight;
-        private Node node;
-
-        public Edge(Vertex startV, Vertex endV, int inputWeight)
-        {
-            this.start = startV;
-            this.end = endV;
-            this.weight = inputWeight;
+            return order;
         }
 
-        public Edge(Node node)
+        public int GetEdge(Graph graph, string[] cities)
         {
-            this.node = node;
+            int cost = 0;
+            if (cities.Length <= 1)
+            {
+                return 0;
+            }
+            for (int i = 0; i < cities.Length - 1; i++)
+            {
+                List<Edge> nodeEdges = graph.GetNeighbors(new Node(cities[i]));
+                if (!nodeEdges.Exists(n => n.Neighbor.Value.ToString() == cities[i + 1]))
+                {
+                    return 0;
+                }
+                else
+                {
+                    cost += nodeEdges.Find(n => n.Neighbor.Value.ToString() == cities[i + 1]).Weight;
+                }
+            }
+            return cost;
         }
 
-        public Vertex getStart()
+        public List<Node> DepthFirst(Graph graph)
         {
-            return this.start;
-        }
+            if (graph.Nodes.Count == 0)
+            {
+                return null;
+            }
+            List<Node> result = new List<Node>();
+            Node root = graph.Nodes[0];
 
-        public Vertex getEnd()
-        {
-            return this.end;
+            result = DepthFirstHelper(graph, result, root);
+            return result;
         }
-
-        public int getWeight()
+        public List<Node> DepthFirstHelper(Graph graph, List<Node> list1, Node root)
         {
-            return this.weight;
+            root.Visited = true;
+            list1.Add(root);
+            foreach (Edge edge in root.Edge)
+            {
+                if (!edge.Neighbor.Visited)
+                {
+                    DepthFirstHelper(graph, list1, edge.Neighbor);
+                }
+            }
+            return list1;
         }
     }
 }
