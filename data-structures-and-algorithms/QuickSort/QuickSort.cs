@@ -4,43 +4,48 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace data_structures_and_algorithms.QuickSort
+namespace sorting.QuickSort
 {
-    internal class Quick_Sort
+    public class QuickSortClass
     {
-		public static void QuickSort(int[] arr, int left, int right)
-		{
-			if (left >= right) /*zero or one element in sublist*/
-				return;
-			int position = Partition(arr, left, right);
-			QuickSort(arr, left, position - 1); /*Sort left sublist*/
-			QuickSort(arr, position + 1, right);  /*Sort right sublist*/
-		}
 
-        private static int Partition(int[] arr, int left, int right)
+        //QuickSort method
+        public int[] QuickSort(int[] myArray, int Left, int Right)
         {
-            int pivot = arr[right];
-            int low = left;
-
-            for (int i = left; i < right; i++)
+            if (Left < Right)
             {
-                if (arr[i] <= pivot)
+                int position = Partition(myArray, Left, Right);
+                QuickSort(myArray, Left, position - 1);
+                QuickSort(myArray, position + 1, Right);
+            }
+            return myArray;
+        }
+        //Partition method
+        public int Partition(int[] myArray, int Left, int Right)
+        {
+            int pivot = myArray[Right];
+            int Low = Left - 1;
+            for (int i = Left; i < Right; i++)
+            {
+                if (myArray[i] <= pivot)
                 {
-                    Swap(arr, i, low);
-                    low++;
+                    Low++;
+                    Swap(myArray, i, Low);
                 }
             }
-
-            Swap(arr, right, low + 1);
-
-            return low + 1;
+            Swap(myArray, Right, Low + 1);
+            return Low + 1;
         }
-
-        private static void Swap(int[] array, int i, int low)
+        //    // Swap Method
+        public void Swap(int[] myArray, int i, int low)
         {
-            int temp = array[i];
-            array[i] = array[low];
-            array[low] = temp;
+            int temp = myArray[i];
+            myArray[i] = myArray[low];
+            myArray[low] = temp;
+
         }
+
+
+
     }
 }
